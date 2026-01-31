@@ -14,8 +14,8 @@
 4. Commit and push
 
 ## GitHub Pages
-- Repo: traceyami/traceychurray.github.io
-- URL: https://traceychurray.github.io
+- Repo: traceyami/traceyami.github.io
+- URL: https://traceyami.github.io
 - Only `index.html`, `versions/`, and `images/` are pushed
 
 ## Current Version
