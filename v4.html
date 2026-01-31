@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype H16: Light + Warm Cells</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-bg: #F5F1EB;
+            --color-cell: #E8DED1;
+            --color-accent: #2D5A4A;
+            --color-text: #1a1a1a;
+            --color-text-muted: #666666;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-hand: 'Caveat', cursive;
+            --gap: 5px;
+            --radius: 10px;
+            --radius-inner: 6px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page {
+            height: calc(100vh - 40px);
+            padding: var(--gap);
+            padding-bottom: 0;
+        }
+
+        .bento {
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 1fr 1fr 0.7fr 0.9fr;
+            gap: var(--gap);
+        }
+
+        .cell {
+            background: var(--color-cell);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cell img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .cell:hover img {
+            transform: scale(1.03);
+        }
+
+        .cell-text {
+            padding: 1.25rem;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        /* Subtle paper texture overlay */
+        .cell-text::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            border-radius: var(--radius);
+        }
+
+        .cell-text .cell-label {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cell-text .cell-value,
+        .cell-text .intro-text {
+            transition: color 0.3s ease;
+        }
+
+        .cell-text:hover .cell-label,
+        .cell-text:hover .location {
+            color: var(--color-accent);
+            transform: translateX(3px);
+        }
+
+        .cell-text:hover .cell-value,
+        .cell-text:hover .intro-text,
+        .cell-text:hover .name {
+            color: #000;
+        }
+
+        .cell-text .name,
+        .cell-text .location {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cell-label {
+            font-family: var(--font-hand);
+            font-size: 1rem;
+            color: #999;
+            margin-bottom: 0.2rem;
+        }
+
+        .cell-value {
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        .cell-name {
+            grid-column: 1 / 4;
+            grid-row: 1;
+        }
+
+        .name {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .location {
+            font-family: var(--font-hand);
+            font-size: 1.1rem;
+            color: #999;
+            margin-top: 0.15rem;
+        }
+
+        /* Full bleed cells - image fills entire cell */
+        .cell-photo {
+            grid-column: 8 / 11;
+            grid-row: 1 / 3;
+        }
+
+        .cell-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Full bleed cells - image fills entire cell */
+        .cell-pidge img,
+        .cell-crab img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Brooklyn - full bleed */
+        .cell-brooklyn {
+            grid-column: 4 / 8;
+            grid-row: 1 / 4;
+            overflow: hidden;
+        }
+
+        .cell-brooklyn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: right bottom;
+        }
+
+        /* Framed cells - image has its own background, gets rounded corners + shadow */
+        .cell-cards img,
+        .cell-card img {
+            border-radius: var(--radius-inner);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .cell-work {
+            grid-column: 1 / 4;
+            grid-row: 2;
+        }
+
+        .cell-hockey {
+            grid-column: 1 / 4;
+            grid-row: 3;
+        }
+
+        .intro-text {
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .intro-text strong {
+            color: var(--color-accent);
+        }
+
+        .cell-pidge {
+            grid-column: 11 / 13;
+            grid-row: 2 / 4;
+        }
+
+        .cell-blank {
+            grid-column: 8;
+            grid-row: 3;
+        }
+
+        .cell-crab {
+            grid-column: 9 / 11;
+            grid-row: 3 / 5;
+        }
+
+        .cell-card {
+            grid-column: 11 / 13;
+            grid-row: 1;
+            padding: 0.75rem;
+            background: #2D5A4A;
+        }
+
+        .cell-etsy {
+            grid-column: 1 / 5;
+            grid-row: 4;
+            text-decoration: none;
+        }
+
+        /* Prevent visited link purple */
+        .cell-etsy,
+        .cell-etsy:visited {
+            color: inherit;
+        }
+
+        .cell-etsy .cell-label,
+        .cell-etsy:visited .cell-label {
+            color: #999;
+        }
+
+        .cell-etsy .cell-value,
+        .cell-etsy:visited .cell-value {
+            color: var(--color-text);
+        }
+
+        .etsy-cta {
+            position: static;
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--color-accent);
+        }
+
+        .cell-etsy:visited .etsy-cta {
+            color: var(--color-accent);
+        }
+
+        .cell-cards {
+            grid-column: 5 / 9;
+            grid-row: 4;
+            padding: 1rem;
+            position: relative;
+            background: #2D5A4A;
+            overflow: hidden;
+        }
+
+        /* Card fan container */
+        .card-fan {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Individual cards in the fan */
+        .card-fan img {
+            position: absolute;
+            height: 75%;
+            width: auto;
+            border-radius: var(--radius-inner);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+            transform-origin: center bottom;
+        }
+
+        /* Fan positions - flatter and wider */
+        .card-fan img:nth-child(1) { transform: rotate(-6deg) translateX(-110%); z-index: 1; }
+        .card-fan img:nth-child(2) { transform: rotate(-3deg) translateX(-55%); z-index: 2; }
+        .card-fan img:nth-child(3) { transform: rotate(0deg) translateX(0%); z-index: 3; }
+        .card-fan img:nth-child(4) { transform: rotate(3deg) translateX(55%); z-index: 4; }
+        .card-fan img:nth-child(5) { transform: rotate(6deg) translateX(110%); z-index: 5; }
+
+        /* Individual card lift on hover */
+        .card-fan img:nth-child(1):hover { transform: rotate(-6deg) translateX(-110%) translateY(-10%) scale(1.12); z-index: 10; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); }
+        .card-fan img:nth-child(2):hover { transform: rotate(-3deg) translateX(-55%) translateY(-10%) scale(1.12); z-index: 10; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); }
+        .card-fan img:nth-child(3):hover { transform: rotate(0deg) translateX(0%) translateY(-10%) scale(1.12); z-index: 10; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); }
+        .card-fan img:nth-child(4):hover { transform: rotate(3deg) translateX(55%) translateY(-10%) scale(1.12); z-index: 10; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); }
+        .card-fan img:nth-child(5):hover { transform: rotate(6deg) translateX(110%) translateY(-10%) scale(1.12); z-index: 10; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25); }
+
+        .cards-cta {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.75rem;
+            background: transparent;
+            color: #F5D547;
+            font-family: var(--font-hand);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+            z-index: 10;
+        }
+
+        .cards-cta::after {
+            content: ' →';
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .cell-cards:hover .cards-cta::after {
+            transform: translateX(3px);
+        }
+
+        .cell-breath {
+            grid-column: 11 / 13;
+            grid-row: 4;
+        }
+
+        .footer {
+            height: 40px;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            font-family: var(--font-hand);
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.2s ease;
+            padding: 0.1em 0.3em;
+            margin: -0.1em -0.3em;
+        }
+
+        /* Highlighter effect - grows from left on hover */
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--color-accent);
+            opacity: 0.15;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease;
+            z-index: -1;
+            border-radius: 2px;
+            /* Slight rotation for hand-drawn feel */
+            rotate: -0.5deg;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-links a:hover::before {
+            transform: scaleX(1);
+        }
+
+        .footer-tagline {
+            font-family: var(--font-hand);
+            font-size: 1rem;
+            color: var(--color-text-muted);
+        }
+
+        .footer-copy {
+            font-size: 0.6rem;
+            color: #aaa;
+            margin-left: 0.75rem;
+        }
+
+        .label {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .label-sub {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        @media (max-width: 900px) {
+            .bento {
+                height: auto;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            .cell-name { grid-column: 1 / -1; grid-row: 1; }
+            .cell-photo { grid-column: 1 / -1; grid-row: 2; aspect-ratio: 3/4; }
+            .cell-brooklyn { grid-column: 1 / -1; grid-row: 3; aspect-ratio: 4/3; }
+            .cell-work { grid-column: 1; grid-row: 4; }
+            .cell-hockey { grid-column: 2; grid-row: 4; }
+            .cell-pidge { grid-column: 1; grid-row: 5; aspect-ratio: 1; }
+            .cell-crab { grid-column: 2; grid-row: 5; aspect-ratio: 1; }
+            .cell-etsy { grid-column: 1 / -1; grid-row: 6; }
+            .cell-cards { grid-column: 1 / -1; grid-row: 7; aspect-ratio: 16/9; }
+            .cell-card { grid-column: 1; grid-row: 8; aspect-ratio: 3/4; }
+            .cell-breath { display: none; }
+            .footer { flex-direction: column; gap: 0.5rem; text-align: center; height: auto; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="label">
+        Cards: Fan
+        <span class="label-sub">5-card spread + hover</span>
+    </div>
+
+    <div class="page">
+        <div class="bento">
+            <div class="cell cell-text cell-name">
+                <span class="name">Tracey Churray</span>
+                <span class="location">Brooklyn, NY</span>
+            </div>
+
+            <div class="cell cell-photo">
+                <img src="images/goalie.jpg" alt="Tracey in hockey goalie gear">
+            </div>
+
+            <div class="cell cell-brooklyn">
+                <img src="images/grandst.png" alt="Brooklyn street illustration">
+            </div>
+
+            <div class="cell cell-text cell-work">
+                <span class="cell-label">Work</span>
+                <span class="cell-value">Head of Product & Design at Filament. Previously Instagram, Spotify, Foursquare.</span>
+            </div>
+
+            <div class="cell cell-text cell-hockey">
+                <span class="cell-label">About</span>
+                <p class="intro-text">
+                    Hockey goalie, illustrator. I like <strong>making things</strong>, on and off the screen.
+                </p>
+            </div>
+
+            <div class="cell cell-pidge">
+                <img src="images/pidge.png" alt="Pigeon illustration">
+            </div>
+
+            <div class="cell cell-blank"></div>
+
+            <div class="cell cell-crab">
+                <img src="images/crab.png" alt="Crab illustration">
+            </div>
+
+            <div class="cell cell-card">
+                <img src="images/bird-cards-etsy.jpg" alt="Birb Playing Cards">
+            </div>
+
+            <a href="https://www.etsy.com/listing/1762481211/hand-illustrated-bird-playing-cards" class="cell cell-text cell-etsy" target="_blank" rel="noopener">
+                <span class="cell-label">Just for Fun</span>
+                <span class="cell-value">I designed a deck of hand-illustrated bird playing cards.</span>
+                <span class="cards-cta etsy-cta">etsy shop</span>
+            </a>
+
+            <div class="cell cell-cards">
+                <div class="card-fan">
+                    <img src="images/joker-bike.png" alt="Joker">
+                    <img src="images/jack-hearts.png" alt="Jack of Hearts">
+                    <img src="images/queen-of-spades.png" alt="Queen of Spades">
+                    <img src="images/queen-diamonds.png" alt="Queen of Diamonds">
+                    <img src="images/king-clubs.png" alt="King of Clubs">
+                </div>
+            </div>
+
+            <div class="cell cell-breath"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://linkedin.com/in/traceychurray">LinkedIn</a>
+            <a href="mailto:tracey@example.com">Email</a>
+        </div>
+        <span class="footer-tagline">Made in Brooklyn</span>
+    </footer>
+</body>
+</html>
