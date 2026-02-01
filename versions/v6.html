@@ -223,29 +223,19 @@
         }
 
         /* Crab runs across on hover - slow in, stop, hop, fast out */
-        .cell-blank-bottom:hover .crab,
-        .cell-blank-bottom.animating .crab {
+        .cell-blank-bottom:hover .crab {
             animation: crab-scuttle 3.5s ease-out forwards;
         }
 
         /* Claws raise up in shock - starts before crab stops */
-        .cell-blank-bottom:hover #left-claw,
-        .cell-blank-bottom.animating #left-claw {
+        .cell-blank-bottom:hover #left-claw {
             animation: left-claw-shock 3.5s ease-out forwards;
             transform-origin: 30px 50px;
         }
 
-        .cell-blank-bottom:hover #right-claw,
-        .cell-blank-bottom.animating #right-claw {
+        .cell-blank-bottom:hover #right-claw {
             animation: right-claw-shock 3.5s ease-out forwards;
             transform-origin: 90px 50px;
-        }
-
-        /* Disable hover on touch devices - use tap instead */
-        .cell-blank-bottom.touch-device:hover .crab,
-        .cell-blank-bottom.touch-device:hover #left-claw,
-        .cell-blank-bottom.touch-device:hover #right-claw {
-            animation: none;
         }
 
         @keyframes crab-scuttle {
@@ -352,45 +342,29 @@
         }
 
         /* Leg scuttling animations */
-        .cell-blank-bottom:hover #left-leg-1,
-        .cell-blank-bottom.animating #left-leg-1 {
+        .cell-blank-bottom:hover #left-leg-1 {
             animation: scuttle-leg-a 3.5s ease-out forwards;
             transform-origin: 37px 100px;
         }
-        .cell-blank-bottom:hover #left-leg-2,
-        .cell-blank-bottom.animating #left-leg-2 {
+        .cell-blank-bottom:hover #left-leg-2 {
             animation: scuttle-leg-b 3.5s ease-out forwards;
             transform-origin: 25px 97px;
         }
-        .cell-blank-bottom:hover #left-leg-3,
-        .cell-blank-bottom.animating #left-leg-3 {
+        .cell-blank-bottom:hover #left-leg-3 {
             animation: scuttle-leg-a 3.5s ease-out forwards;
             transform-origin: 10px 92px;
         }
-        .cell-blank-bottom:hover #right-leg-1,
-        .cell-blank-bottom.animating #right-leg-1 {
+        .cell-blank-bottom:hover #right-leg-1 {
             animation: scuttle-leg-b 3.5s ease-out forwards;
             transform-origin: 80px 100px;
         }
-        .cell-blank-bottom:hover #right-leg-2,
-        .cell-blank-bottom.animating #right-leg-2 {
+        .cell-blank-bottom:hover #right-leg-2 {
             animation: scuttle-leg-a 3.5s ease-out forwards;
             transform-origin: 92px 97px;
         }
-        .cell-blank-bottom:hover #right-leg-3,
-        .cell-blank-bottom.animating #right-leg-3 {
+        .cell-blank-bottom:hover #right-leg-3 {
             animation: scuttle-leg-b 3.5s ease-out forwards;
             transform-origin: 107px 92px;
-        }
-
-        /* Disable leg hover on touch devices */
-        .cell-blank-bottom.touch-device:hover #left-leg-1,
-        .cell-blank-bottom.touch-device:hover #left-leg-2,
-        .cell-blank-bottom.touch-device:hover #left-leg-3,
-        .cell-blank-bottom.touch-device:hover #right-leg-1,
-        .cell-blank-bottom.touch-device:hover #right-leg-2,
-        .cell-blank-bottom.touch-device:hover #right-leg-3 {
-            animation: none;
         }
 
         /* Alternating leg movements - pattern A */
@@ -852,7 +826,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
 
         /* Individual cards in the fan */
@@ -889,31 +862,6 @@
         .card-fan img:nth-child(3) { animation: fan-out-3 0.5s ease-out backwards; animation-delay: 1s; }
         .card-fan img:nth-child(4) { animation: fan-out-4 0.5s ease-out backwards; animation-delay: 1s; }
         .card-fan img:nth-child(5) { animation: fan-out-5 0.5s ease-out backwards; animation-delay: 1s; }
-
-        /* Mobile: hold cards stacked until scrolled into view */
-        .card-fan.mobile-hidden img {
-            animation: none;
-            transform: rotate(0deg) translateX(0%);
-        }
-        .card-fan.mobile-hidden.ready img:nth-child(1) { animation: fan-out-1 0.5s ease-out forwards; animation-delay: 0.1s; }
-        .card-fan.mobile-hidden.ready img:nth-child(2) { animation: fan-out-2 0.5s ease-out forwards; animation-delay: 0.1s; }
-        .card-fan.mobile-hidden.ready img:nth-child(3) { animation: fan-out-3 0.5s ease-out forwards; animation-delay: 0.1s; }
-        .card-fan.mobile-hidden.ready img:nth-child(4) { animation: fan-out-4 0.5s ease-out forwards; animation-delay: 0.1s; }
-        .card-fan.mobile-hidden.ready img:nth-child(5) { animation: fan-out-5 0.5s ease-out forwards; animation-delay: 0.1s; }
-
-        /* Hint animation to show cards are interactive */
-        .card-fan img.hint-lift {
-            transform: rotate(0deg) translateX(0%) translateY(-10%) scale(1.12) !important;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25) !important;
-            z-index: 10 !important;
-            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out !important;
-        }
-
-        /* Center the fan when any card is lifted */
-        .card-fan:has(.hint-lift),
-        .card-fan:has(img:hover) {
-            transform: translateY(5%);
-        }
 
         @keyframes fan-out-1 {
             from { transform: rotate(2deg) translateX(0%); }
@@ -1034,256 +982,24 @@
             margin-left: 0.75rem;
         }
 
-        /* Tablet - 2 columns */
-        @media (max-width: 1024px) {
-            .page {
-                height: auto;
-                min-height: 100vh;
-            }
+        @media (max-width: 900px) {
             .bento {
                 height: auto;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto;
             }
-            .cell-name { grid-column: 1 / -1; grid-row: 1; min-height: 80px; }
-            .cell-photo { grid-column: 1; grid-row: 2; aspect-ratio: 3/4; }
-            .cell-brooklyn { grid-column: 2; grid-row: 2; aspect-ratio: 3/4; }
-            .cell-pidge-top { grid-column: 1; grid-row: 3; aspect-ratio: 1; }
-            .cell-crab-mid { grid-column: 2; grid-row: 3; aspect-ratio: 1; }
-            .cell-work { grid-column: 1; grid-row: 4; min-height: 100px; }
-            .cell-hockey { grid-column: 2; grid-row: 4; min-height: 100px; }
-            .cell-blank-bottom { grid-column: 1; grid-row: 5; aspect-ratio: 1; }
-            .cell-card { grid-column: 2; grid-row: 5; aspect-ratio: 1; }
-            .cell-pidge { grid-column: 1; grid-row: 6; aspect-ratio: 1; }
-            .cell-crab { grid-column: 2; grid-row: 6; aspect-ratio: 1; }
-            .cell-etsy { grid-column: 1 / -1; grid-row: 7; min-height: 100px; }
-            .cell-cards { grid-column: 1 / -1; grid-row: 8; aspect-ratio: 16/9; }
-            .cell-breath { grid-column: 1 / -1; grid-row: 9; aspect-ratio: 16/9; }
-        }
-
-        /* Phone - Offset brick/masonry style */
-        @media (max-width: 600px) {
-            :root {
-                --gap: 3px;
-                --radius: 6px;
-            }
-            .page {
-                height: auto;
-                padding: var(--gap);
-            }
-            .bento {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
-            }
-
-            /* Row 1: Name with integrated crab animation */
-            .cell-name {
-                grid-column: 1 / 3;
-                grid-row: 1;
-                padding: 0.75rem;
-                position: relative;
-            }
-
-            /* Hide the separate crab cell on mobile */
-            .cell-blank-bottom { display: none; }
-
-            /* Crab animation inside name cell */
-            .cell-name .crab-scene {
-                position: absolute;
-                inset: auto 0 0 0;
-                height: 35px;
-                overflow: visible;
-            }
-            .cell-name .crab-scene .crab {
-                width: 35px;
-                bottom: 2px;
-                left: auto;
-                right: -40px;
-                transform: scaleX(-1);
-            }
-
-            /* Mobile crab animation - peek, walk slowly, peek with arms, jump, scurry out */
-            @keyframes crab-scuttle-mobile {
-                /* Start off-screen right */
-                0% { right: -40px; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-                /* Peek out slowly */
-                8% { right: -10px; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-                /* Stop and hold peek */
-                14% { right: -10px; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-                /* Very slowly walk to about halfway */
-                55% { right: 45%; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-                /* Stop - arms will open here */
-                62% { right: 45%; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-                /* Crouch before jump */
-                66% { right: 45%; bottom: 0; transform: scaleX(-1) scaleY(0.85); }
-                /* Jump! */
-                72% { right: 42%; bottom: 18px; transform: scaleX(-1) scaleY(1.1); }
-                /* Land with squash */
-                77% { right: 40%; bottom: 2px; transform: scaleX(-1) scaleY(0.9); }
-                /* Recover */
-                80% { right: 40%; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-                /* Quick scurry back out */
-                100% { right: -40px; bottom: 2px; transform: scaleX(-1) scaleY(1); }
-            }
-
-            /* Trigger animations when name cell has .animating class */
-            .cell-name.animating .crab { animation: crab-scuttle-mobile 4s ease-in-out forwards; }
-            .cell-name.animating #left-claw { animation: left-claw-shock-mobile 4s ease-in-out forwards; transform-origin: 30px 50px; }
-            .cell-name.animating #right-claw { animation: right-claw-shock-mobile 4s ease-in-out forwards; transform-origin: 90px 50px; }
-            .cell-name.animating #left-leg-1 { animation: scuttle-leg-a-mobile 4s ease-in-out forwards; transform-origin: 37px 100px; }
-            .cell-name.animating #left-leg-2 { animation: scuttle-leg-b-mobile 4s ease-in-out forwards; transform-origin: 25px 97px; }
-            .cell-name.animating #left-leg-3 { animation: scuttle-leg-a-mobile 4s ease-in-out forwards; transform-origin: 10px 92px; }
-            .cell-name.animating #right-leg-1 { animation: scuttle-leg-b-mobile 4s ease-in-out forwards; transform-origin: 80px 100px; }
-            .cell-name.animating #right-leg-2 { animation: scuttle-leg-a-mobile 4s ease-in-out forwards; transform-origin: 92px 97px; }
-            .cell-name.animating #right-leg-3 { animation: scuttle-leg-b-mobile 4s ease-in-out forwards; transform-origin: 107px 92px; }
-
-            /* Mobile claw - open to peek, close on landing */
-            @keyframes left-claw-shock-mobile {
-                0%, 55% { transform: rotate(0deg); }
-                /* Open arms to peek */
-                60% { transform: rotate(-25deg); }
-                /* Hold through jump */
-                72% { transform: rotate(-25deg); }
-                /* Close on landing */
-                77% { transform: rotate(0deg); }
-                100% { transform: rotate(0deg); }
-            }
-            @keyframes right-claw-shock-mobile {
-                0%, 55% { transform: rotate(0deg); }
-                /* Open arms to peek */
-                60% { transform: rotate(25deg); }
-                /* Hold through jump */
-                72% { transform: rotate(25deg); }
-                /* Close on landing */
-                77% { transform: rotate(0deg); }
-                100% { transform: rotate(0deg); }
-            }
-
-            /* Mobile leg scuttle - slow in, still during peek/jump, fast out */
-            @keyframes scuttle-leg-a-mobile {
-                /* Slow peek */
-                0% { transform: rotate(0deg); }
-                2% { transform: rotate(4deg); }
-                4% { transform: rotate(-4deg); }
-                6% { transform: rotate(4deg); }
-                8% { transform: rotate(0deg); }
-                /* Hold during peek stop */
-                9%, 14% { transform: rotate(0deg); }
-                /* Very slow walk - gentle steps */
-                18% { transform: rotate(4deg); }
-                24% { transform: rotate(-4deg); }
-                30% { transform: rotate(4deg); }
-                36% { transform: rotate(-4deg); }
-                42% { transform: rotate(4deg); }
-                48% { transform: rotate(-4deg); }
-                54% { transform: rotate(0deg); }
-                /* Still during peek and jump */
-                55%, 80% { transform: rotate(0deg); }
-                /* Fast scurry out */
-                84% { transform: rotate(8deg); }
-                88% { transform: rotate(-8deg); }
-                92% { transform: rotate(8deg); }
-                96% { transform: rotate(-8deg); }
-                100% { transform: rotate(0deg); }
-            }
-            @keyframes scuttle-leg-b-mobile {
-                /* Slow peek */
-                0% { transform: rotate(0deg); }
-                2% { transform: rotate(-4deg); }
-                4% { transform: rotate(4deg); }
-                6% { transform: rotate(-4deg); }
-                8% { transform: rotate(0deg); }
-                /* Hold during peek stop */
-                9%, 14% { transform: rotate(0deg); }
-                /* Very slow walk - gentle steps */
-                18% { transform: rotate(-4deg); }
-                24% { transform: rotate(4deg); }
-                30% { transform: rotate(-4deg); }
-                36% { transform: rotate(4deg); }
-                42% { transform: rotate(-4deg); }
-                48% { transform: rotate(4deg); }
-                54% { transform: rotate(0deg); }
-                /* Still during peek and jump */
-                55%, 80% { transform: rotate(0deg); }
-                /* Fast scurry out */
-                84% { transform: rotate(-8deg); }
-                88% { transform: rotate(8deg); }
-                92% { transform: rotate(-8deg); }
-                96% { transform: rotate(8deg); }
-                100% { transform: rotate(0deg); }
-            }
-
-            /* Row 2-3: Photo left (tall), About row 2, Pidge rows 3-4 right */
-            .cell-photo { grid-column: 1; grid-row: 2 / 4; }
-            .cell-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-            .cell-hockey { grid-column: 2; grid-row: 2; padding: 0.75rem; }
-            .cell-pidge { grid-column: 2; grid-row: 3 / 5; aspect-ratio: 2/3; }
-
-            /* Row 4: Work left (bottom aligns with Pidge) */
-            .cell-work { grid-column: 1; grid-row: 4; padding: 0.75rem; padding-top: calc(0.75rem + 20px); margin-top: -20px; }
-
-            /* Row 5: Cards span full width */
-            .cell-cards { grid-column: 1 / -1; grid-row: 5; aspect-ratio: 16/10; }
-
-            /* Row 6: Etsy spans full width */
-            .cell-etsy {
-                grid-column: 1 / -1;
-                grid-row: 6;
-                padding: 0.75rem;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: flex-start !important;
-                align-items: flex-start !important;
-            }
-            .cell-etsy .etsy-cta {
-                order: -1 !important;
-                margin-bottom: 0.5rem !important;
-                margin-top: 0 !important;
-            }
-            .cell-etsy .cell-label {
-                order: 0 !important;
-            }
-            .cell-etsy .cell-value {
-                order: 1 !important;
-            }
-
-            /* Row 7-8: Brooklyn 2x2, taller to fit full image */
-            .cell-brooklyn { grid-column: 1 / 3; grid-row: 7 / 9; aspect-ratio: 4/5; }
-
-            /* Row 9-10: Static crab + boobies left, Flamingo right (stretches to match) */
-            .cell-crab { grid-column: 1; grid-row: 9; aspect-ratio: 1; }
-            .cell-breath { grid-column: 1; grid-row: 10; aspect-ratio: 1; }
-            .cell-pidge-top { grid-column: 2; grid-row: 9 / 11; aspect-ratio: auto; }
-            .cell-pidge-top img { height: 100%; width: 100%; object-fit: cover; }
-
-            /* Row 11: Puffer fish full width at bottom */
-            .cell-card { grid-column: 1 / 3; grid-row: 11; aspect-ratio: 16/9; }
-
-            /* Hide owl on mobile */
-            .cell-crab-mid { display: none; }
-
-            .name { font-size: 1.3rem; }
-            .location { font-size: 0.9rem; }
-            .cell-label { font-size: 0.85rem; margin-bottom: 0.1rem; }
-            .cell-value, .intro-text { font-size: 0.8rem; line-height: 1.4; }
-
-            /* Cards need adjustment for narrower cell */
-            .card-fan img { height: 65%; }
-            .cards-cta { font-size: 0.9rem; right: 0.5rem; bottom: 0.4rem; }
-
-            /* Small crab for intro cell */
-            .crab-scene .crab { width: 25px; }
-
-            .footer {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-                height: auto;
-                padding: 0.75rem;
-            }
-            .footer-links { gap: 1rem; }
-            .footer-links a { font-size: 1rem; }
-            .footer-tagline { font-size: 0.9rem; }
+            .cell-name { grid-column: 1 / -1; grid-row: 1; }
+            .cell-photo { grid-column: 1 / -1; grid-row: 2; aspect-ratio: 3/4; }
+            .cell-brooklyn { grid-column: 1 / -1; grid-row: 3; aspect-ratio: 4/3; }
+            .cell-work { grid-column: 1; grid-row: 4; }
+            .cell-hockey { grid-column: 2; grid-row: 4; }
+            .cell-pidge { grid-column: 1; grid-row: 5; aspect-ratio: 1; }
+            .cell-crab { grid-column: 2; grid-row: 5; aspect-ratio: 1; }
+            .cell-etsy { grid-column: 1 / -1; grid-row: 6; }
+            .cell-cards { grid-column: 1 / -1; grid-row: 7; aspect-ratio: 16/9; }
+            .cell-card { grid-column: 1; grid-row: 8; aspect-ratio: 3/4; }
+            .cell-breath { display: none; }
+            .footer { flex-direction: column; gap: 0.5rem; text-align: center; height: auto; padding: 1rem; }
         }
     </style>
 </head>
@@ -1542,80 +1258,10 @@
     </footer>
 
     <script>
-        const cardFan = document.querySelector('.card-fan');
-        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-        if (isTouchDevice) {
-            // On mobile: trigger card fan when scrolled into view
-            cardFan.classList.add('mobile-hidden');
-
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        cardFan.classList.remove('mobile-hidden');
-                        cardFan.classList.add('ready');
-                        cardObserver.unobserve(entry.target);
-
-                        // After fan-out completes, highlight the middle card to show interactivity
-                        setTimeout(() => {
-                            const middleCard = cardFan.querySelector('img:nth-child(3)');
-                            if (middleCard) {
-                                middleCard.classList.add('hint-lift');
-
-                                // Remove hint when any other card is tapped
-                                const allCards = cardFan.querySelectorAll('img');
-                                allCards.forEach(card => {
-                                    card.addEventListener('click', () => {
-                                        middleCard.classList.remove('hint-lift');
-                                    }, { once: true });
-                                });
-                            }
-                        }, 1200); // Wait for fan-out to fully complete
-                    }
-                });
-            }, {
-                threshold: 0.7,
-                rootMargin: '-20% 0px -20% 0px'  // Only trigger when more centered
-            });
-
-            cardObserver.observe(cardFan);
-        } else {
-            // On desktop: original page load timing
-            setTimeout(() => {
-                cardFan.classList.add('ready');
-            }, 1600);
-        }
-
-        // Crab animation for touch devices
-        const crabCell = document.querySelector('.cell-blank-bottom');
-        const nameCell = document.querySelector('.cell-name');
-        const crabScene = document.querySelector('.crab-scene');
-
-        if (isTouchDevice && crabCell && nameCell && crabScene) {
-            // Move crab into name cell on mobile
-            nameCell.appendChild(crabScene);
-            nameCell.classList.add('has-crab');
-
-            // Auto-play after delay
-            setTimeout(() => {
-                nameCell.classList.add('animating');
-
-                // Allow replay on tap after animation ends
-                setTimeout(() => {
-                    nameCell.classList.remove('animating');
-
-                    // Enable tap to replay
-                    nameCell.addEventListener('click', function() {
-                        this.classList.remove('animating');
-                        void this.offsetWidth;
-                        this.classList.add('animating');
-                        setTimeout(() => {
-                            this.classList.remove('animating');
-                        }, 4000);
-                    });
-                }, 4000);
-            }, 800);
-        }
+        // Enable card interaction after fan-out animation completes
+        setTimeout(() => {
+            document.querySelector('.card-fan').classList.add('ready');
+        }, 1600);
     </script>
 </body>
 </html>

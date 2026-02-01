@@ -19,4 +19,4 @@
 - Only `index.html`, `versions/`, and `images/` are pushed
 
 ## Current Version
-v5 - Bento grid with card fan, flamingo/owl stack, boobies corner
+v7 - Mobile responsive: Pinterest-style masonry layout, crab integrated into name cell with peek/walk/jump animation, card fan with hint lift on middle card, smooth card centering on hover

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 419.77 476.12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e2b991;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4, .cls-6 {
+        fill: none;
+      }
+
+      .cls-5, .cls-7 {
+        fill: #8c6239;
+      }
+
+      .cls-6 {
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <path class="cls-1" d="M290.33,212.14l62.15-100.16c3.35-2.18,3.21,7.15,7.86,8.29,9.31,2.29,13.59-9.77,18.01-3.15,0,0-.76,13.75,4.81,19.81,11.09,12.06,15.91,1.34,16.67,3.09,2.06,4.77-3.83,13.83-2.06,18.97,2.17,6.31,18.77,2.02,21.19,7.14,2.21,4.68-8,13.17-10.69,18.98-2.68,5.8,2.15,8.91-.09,10.37l-117.85,16.66c-.19-.26-.38-.52-.55-.76"/>
+        <line class="cls-4" x1="378.35" y1="117.13" x2="290.33" y2="212.14"/>
+        <line class="cls-4" x1="399.84" y1="140.03" x2="290.33" y2="212.14"/>
+        <line class="cls-4" x1="418.96" y1="166.14" x2="290.33" y2="212.14"/>
+        <ellipse class="cls-7" cx="348.99" cy="130.43" rx="5.84" ry="2.93" transform="translate(-22.22 98.66) rotate(-15.6)"/>
+        <ellipse class="cls-7" cx="342.71" cy="143.95" rx="2.93" ry="5.84" transform="translate(85.32 412.14) rotate(-68.96)"/>
+        <ellipse class="cls-7" cx="332.39" cy="156.76" rx="4.35" ry="2.18" transform="translate(-34.84 142.57) rotate(-23.04)"/>
+        <ellipse class="cls-7" cx="322.31" cy="170.28" rx="1.38" ry="2.68" transform="translate(-7.11 14.19) rotate(-2.49)"/>
+        <ellipse class="cls-7" cx="368.27" cy="145.07" rx="5.85" ry="2.92" transform="translate(-6.32 17.21) rotate(-2.65)"/>
+        <ellipse class="cls-7" cx="359.02" cy="156.82" rx="2.94" ry="5.82" transform="translate(27.89 366.21) rotate(-55.9)"/>
+        <ellipse class="cls-7" cx="346.01" cy="166.96" rx="4.35" ry="2.18" transform="translate(-23.84 62.99) rotate(-10.06)"/>
+        <ellipse class="cls-7" cx="333.06" cy="177.85" rx="2.68" ry="1.38" transform="translate(94.72 470.68) rotate(-78.96)"/>
+        <ellipse class="cls-7" cx="390.22" cy="162.53" rx="2.93" ry="5.84" transform="translate(138.4 502.05) rotate(-76.05)"/>
+        <ellipse class="cls-7" cx="377.9" cy="171.1" rx="2.95" ry="5.8" transform="translate(-23.54 275.63) rotate(-38.95)"/>
+        <ellipse class="cls-7" cx="362.45" cy="177.05" rx="2.18" ry="4.36" transform="translate(145.25 516.97) rotate(-83.46)"/>
+        <ellipse class="cls-7" cx="346.84" cy="183.73" rx="2.69" ry="1.37" transform="translate(20.54 401.88) rotate(-61.68)"/>
+        <ellipse class="cls-7" cx="389.69" cy="185.73" rx="2.93" ry="5.83" transform="translate(64.72 469.9) rotate(-66.65)"/>
+        <ellipse class="cls-7" cx="376.1" cy="192.16" rx="2.96" ry="5.79" transform="translate(-45.93 208.66) rotate(-29.3)"/>
+        <ellipse class="cls-7" cx="359.86" cy="195.49" rx="2.18" ry="4.35" transform="translate(73.2 487.97) rotate(-74.09)"/>
+        <ellipse class="cls-7" cx="343.34" cy="199.52" rx="2.7" ry="1.37" transform="translate(-25.22 347.35) rotate(-52.02)"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M118.93,211.46l-57.09-95.62c-3.08-2.08-2.95,6.82-7.22,7.92-8.55,2.19-12.48-9.33-16.54-3,0,0,.7,13.13-4.42,18.91-10.18,11.51-14.62,1.28-15.31,2.95-1.89,4.55,3.52,13.21,1.9,18.11-1.99,6.02-17.24,1.93-19.46,6.82-2.03,4.47,7.35,12.58,9.82,18.12,2.47,5.54-1.98,8.51.09,9.9l108.25,15.9c.18-.25.35-.49.51-.73"/>
+        <line class="cls-4" x1="38.08" y1="120.75" x2="118.93" y2="211.46"/>
+        <line class="cls-4" x1="18.35" y1="142.61" x2="118.93" y2="211.46"/>
+        <line class="cls-4" x1=".78" y1="167.54" x2="118.93" y2="211.46"/>
+        <ellipse class="cls-7" cx="65.06" cy="133.45" rx="2.79" ry="5.38" transform="translate(-81.42 157.66) rotate(-73.4)"/>
+        <ellipse class="cls-7" cx="70.82" cy="146.36" rx="5.39" ry="2.78" transform="translate(-50.3 37.89) rotate(-22.33)"/>
+        <ellipse class="cls-7" cx="80.3" cy="158.59" rx="2.07" ry="4.02" transform="translate(-97.3 166.13) rotate(-65.58)"/>
+        <ellipse class="cls-7" cx="89.56" cy="171.5" rx="2.56" ry="1.27" transform="translate(-85.45 253.99) rotate(-87.66)"/>
+        <ellipse class="cls-7" cx="47.34" cy="147.43" rx="2.79" ry="5.37" transform="translate(-102.25 187.43) rotate(-87.17)"/>
+        <ellipse class="cls-7" cx="55.84" cy="158.65" rx="5.42" ry="2.77" transform="translate(-82.36 62.78) rotate(-35.86)"/>
+        <ellipse class="cls-7" cx="67.79" cy="168.33" rx="2.08" ry="4" transform="translate(-110.21 203.61) rotate(-79.27)"/>
+        <ellipse class="cls-7" cx="79.69" cy="178.72" rx="1.27" ry="2.56" transform="translate(-30.84 17.25) rotate(-10.36)"/>
+        <ellipse class="cls-7" cx="27.18" cy="164.1" rx="5.38" ry="2.79" transform="translate(-41.18 12.46) rotate(-14.86)"/>
+        <ellipse class="cls-7" cx="38.5" cy="172.28" rx="5.45" ry="2.75" transform="translate(-122.08 98.96) rotate(-52.86)"/>
+        <ellipse class="cls-7" cx="52.69" cy="177.96" rx="4" ry="2.08" transform="translate(-21.25 7.73) rotate(-6.98)"/>
+        <ellipse class="cls-7" cx="67.02" cy="184.34" rx="1.27" ry="2.55" transform="translate(-75.9 50) rotate(-26.79)"/>
+        <ellipse class="cls-7" cx="27.67" cy="186.25" rx="5.39" ry="2.78" transform="translate(-75.43 28.69) rotate(-24.75)"/>
+        <ellipse class="cls-7" cx="40.15" cy="192.39" rx="5.48" ry="2.74" transform="translate(-148.82 138.39) rotate(-62.26)"/>
+        <ellipse class="cls-7" cx="55.07" cy="195.57" rx="4.01" ry="2.08" transform="translate(-54.57 24.52) rotate(-16.93)"/>
+        <ellipse class="cls-7" cx="70.24" cy="199.41" rx="1.28" ry="2.54" transform="translate(-104.18 79.93) rotate(-36.18)"/>
+      </g>
+      <path class="cls-1" d="M361.43,280.26s1.78,10.4,1.48,21.04c-1.78,63.4-58.88,157.08-159.24,157.08-87.95,0-159.24-70.32-159.24-157.08,0-35.49,12.85-62.39,18.04-71.98,24.32-44.95,76.23-85.68,141.21-85.1,0,0,91.31.81,141.99,91.84,12.32,22.11,15.78,44.2,15.78,44.2Z"/>
+      <path class="cls-7" d="M203.97,144.23c-62.65-.55-113.08,37.4-138.11,80.32,6.38,5.92,15.25,11.99,27.58,19.82,10.09,6.42,26.83-.04,39.01,1.51,5.75.73,10.6,12.6,17.39,17.26,12.72,8.72,68.32,1.21,79.99,2.47,1.28.14,33.13.41,34.38.41,30.11.02,50.38-17.74,66.5-21.53,6.49-1.52,12.02-3.14,16.73-4.9-.74-1.45-1.51-2.9-2.32-4.35-50.38-90.2-141.15-91-141.15-91Z"/>
+      <polyline class="cls-5" points="168.42 158.54 139.99 120.4 137.16 167.66"/>
+      <polyline class="cls-5" points="219.9 153.33 207.35 107.64 187.42 150.7"/>
+      <polyline class="cls-5" points="267.5 174.84 269.43 127.54 237.31 162.71"/>
+      <polyline class="cls-5" points="307.91 194.46 323.78 149.79 282.64 174.16"/>
+      <polyline class="cls-5" points="323.01 231 354.45 195.24 307.1 202.93"/>
+      <polyline class="cls-1" points="342.57 277.71 384.98 255.56 338.01 245.87"/>
+      <polyline class="cls-1" points="334.71 325.7 381.9 317.14 340.05 293.98"/>
+      <polyline class="cls-1" points="316.28 365.45 363.95 370.87 330.79 336.66"/>
+      <polyline class="cls-1" points="290.05 401.21 332.52 423.24 314.12 379.53"/>
+      <polyline class="cls-1" points="250.4 432.71 281.95 468.38 280.78 421.06"/>
+      <polyline class="cls-1" points="198.16 429.19 217.4 472.56 230.69 427.07"/>
+      <polyline class="cls-1" points="150.02 427.68 155.56 474.7 181.75 435.04"/>
+      <polyline class="cls-1" points="110.42 403.78 101.43 450.28 138.46 420.18"/>
+      <polyline class="cls-1" points="80.98 365.51 55.58 405.67 101.13 390.78"/>
+      <polyline class="cls-1" points="55.9 326.72 19.45 357.51 67.43 356.8"/>
+      <polyline class="cls-1" points="56.98 281.89 12.99 300.81 59.09 313.97"/>
+      <polyline class="cls-1" points="64.97 239.17 17.01 240.85 54.99 269.78"/>
+      <polyline class="cls-5" points="95.11 203.74 48.85 191.15 76.28 229.99"/>
+      <polyline class="cls-5" points="132.83 172.71 92.33 147.32 107.04 192.38"/>
+      <polyline class="cls-1" points="188.27 330.91 203.96 359.14 210.18 327.54"/>
+      <polyline class="cls-1" points="150.8 315.8 153.43 347.89 172.19 321.55"/>
+      <polyline class="cls-1" points="232.62 329.98 262.64 342.6 247.72 313.97"/>
+      <polyline class="cls-5" points="291.16 241.85 307.24 213.84 276.72 225.25"/>
+      <polyline class="cls-1" points="294.23 293.69 314.66 268.58 281.37 271.52"/>
+      <polyline class="cls-1" points="303.82 313.2 336.22 309.34 308.79 291.89"/>
+      <polyline class="cls-1" points="278.29 343.22 309.61 352.27 291.37 325.57"/>
+      <polyline class="cls-1" points="255.17 371.22 281.07 390.81 273.84 359.42"/>
+      <polyline class="cls-1" points="218.32 375.28 237.06 401.63 239.72 369.55"/>
+      <polyline class="cls-1" points="185.34 388.54 195.45 419.14 207.5 389.23"/>
+      <polyline class="cls-1" points="155.01 366.79 155.37 398.98 175.94 374"/>
+      <polyline class="cls-1" points="122.95 360.39 111.5 390.53 139.83 374.56"/>
+      <polyline class="cls-1" points="111.34 324.04 92.46 350.3 124 341.99"/>
+      <polyline class="cls-1" points="87.71 293.12 58.9 308.25 90.86 314.77"/>
+      <polyline class="cls-1" points="116.6 259.03 84.26 263.32 111.92 280.41"/>
+      <polyline class="cls-5" points="120.5 219.4 89.26 210.09 107.27 236.94"/>
+      <ellipse class="cls-3" cx="165.15" cy="226.49" rx="16.6" ry="16.37"/>
+      <ellipse class="cls-3" cx="234.92" cy="228" rx="16.6" ry="16.37"/>
+      <ellipse class="cls-2" cx="229.81" cy="227.57" rx="7.14" ry="7.04"/>
+      <ellipse class="cls-2" cx="170.78" cy="224.43" rx="7.14" ry="7.04"/>
+      <path class="cls-2" d="M239.72,283.8c0,7.87-3.08,12.45-10.7,16.75-5.5,3.1-13.33-3.45-28.22,2.08-6.81,2.53-19.72-6.39-25.55-8.93-11.39-4.97-13.37.52-13.37-9.89,0-15.74,17.42-28.5,38.92-28.5s38.92,12.76,38.92,28.5Z"/>
+      <path class="cls-6" d="M226.77,198.52c8.47-6.82,22.13-4.1,30.54,6.07"/>
+      <path class="cls-6" d="M177.15,196.63c-8.47-6.82-22.13-4.1-30.54,6.07"/>
+    </g>
+  </g>
+</svg>
