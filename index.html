@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation Test - Tracey Churray</title>
+    <title>Tracey Churray</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
@@ -1580,9 +1580,25 @@
 
             cardObserver.observe(cardFan);
         } else {
-            // On desktop: original page load timing
+            // On desktop: fan out, then show hint on middle card
             setTimeout(() => {
                 cardFan.classList.add('ready');
+
+                // After fan-out completes, highlight the middle card
+                setTimeout(() => {
+                    const middleCard = cardFan.querySelector('img:nth-child(3)');
+                    if (middleCard) {
+                        middleCard.classList.add('hint-lift');
+
+                        // Remove hint when hovering any card
+                        const allCards = cardFan.querySelectorAll('img');
+                        allCards.forEach(card => {
+                            card.addEventListener('mouseenter', () => {
+                                middleCard.classList.remove('hint-lift');
+                            }, { once: true });
+                        });
+                    }
+                }, 600);
             }, 1600);
         }
 
