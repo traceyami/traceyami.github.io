@@ -495,12 +495,19 @@
         .puffer-bounce .puffer {
             position: absolute; width: 60px; height: auto;
             border: none; box-shadow: none; border-radius: 0;
-            animation: puffer-dvd 20s ease-in-out infinite, puffer-wobble 3s ease-in-out infinite;
+            animation: puffer-dvd 28s ease-in-out infinite, puffer-wobble 3s ease-in-out infinite;
+            animation-play-state: paused;
+        }
+
+        .puffer-active .puffer,
+        .puffer-active .puffer #right-fin,
+        .puffer-active .puffer #left-fin {
+            animation-play-state: running;
         }
 
         @keyframes puffer-wobble { 0%, 100% { margin-top: 0; } 50% { margin-top: 6px; } }
-        #right-fin { transform-origin: 290px 212px; animation: right-fin-flap 20s ease-in-out infinite; }
-        #left-fin { transform-origin: 119px 211px; animation: left-fin-flap 20s ease-in-out infinite; }
+        #right-fin { transform-origin: 290px 212px; animation: right-fin-flap 28s ease-in-out infinite; animation-play-state: paused; }
+        #left-fin { transform-origin: 119px 211px; animation: left-fin-flap 28s ease-in-out infinite; animation-play-state: paused; }
 
         @keyframes right-fin-flap {
             0%,14%{transform:rotate(0)}16%{transform:rotate(-15deg)}18%{transform:rotate(8deg)}20%{transform:rotate(-5deg)}22%,38%{transform:rotate(0)}40%{transform:rotate(-12deg)}42%{transform:rotate(6deg)}44%,56%{transform:rotate(0)}58%{transform:rotate(-10deg)}60%{transform:rotate(5deg)}62%,73%{transform:rotate(0)}75%{transform:rotate(-12deg)}77%{transform:rotate(6deg)}79%,100%{transform:rotate(0)}
@@ -509,7 +516,7 @@
             0%,14%{transform:rotate(0)}16%{transform:rotate(15deg)}18%{transform:rotate(-8deg)}20%{transform:rotate(5deg)}22%,38%{transform:rotate(0)}40%{transform:rotate(12deg)}42%{transform:rotate(-6deg)}44%,56%{transform:rotate(0)}58%{transform:rotate(10deg)}60%{transform:rotate(-5deg)}62%,73%{transform:rotate(0)}75%{transform:rotate(12deg)}77%{transform:rotate(-6deg)}79%,100%{transform:rotate(0)}
         }
         @keyframes puffer-dvd {
-            0%{top:25%;left:0;transform:rotate(3deg) scale(1)}8%{top:12%;left:50%;transform:rotate(-2deg)}14%{top:6%;left:calc(100% - 65px);transform:rotate(-5deg)}16%{top:5%;left:calc(100% - 60px);transform:rotate(-8deg) scaleX(.92) scaleY(1.05)}20%{top:10%;left:calc(100% - 70px);transform:rotate(-15deg) scale(1.02)}30%{top:45%;left:60%;transform:rotate(-8deg)}38%{top:calc(100% - 75px);left:40%;transform:rotate(2deg)}40%{top:calc(100% - 70px);left:38%;transform:rotate(8deg) scaleX(1.04) scaleY(.94)}45%{top:calc(100% - 85px);left:30%;transform:rotate(15deg)}55%{top:50%;left:8%;transform:rotate(10deg)}58%{top:48%;left:0;transform:rotate(5deg) scaleX(.94) scaleY(1.04)}63%{top:40%;left:10%;transform:rotate(-8deg)}72%{top:8%;left:35%;transform:rotate(-12deg)}75%{top:0;left:40%;transform:rotate(-5deg) scaleX(1.04) scaleY(.94)}80%{top:12%;left:30%;transform:rotate(5deg)}90%{top:30%;left:12%;transform:rotate(8deg)}100%{top:25%;left:0;transform:rotate(3deg)}
+            0%{top:calc(100% + 20px);left:10%;transform:rotate(5deg) scale(1)}5%{top:50%;left:5%;transform:rotate(3deg)}10%{top:25%;left:0;transform:rotate(3deg)}17%{top:12%;left:50%;transform:rotate(-2deg)}22%{top:6%;left:calc(100% - 65px);transform:rotate(-5deg)}24%{top:5%;left:calc(100% - 60px);transform:rotate(-8deg) scaleX(.92) scaleY(1.05)}28%{top:10%;left:calc(100% - 70px);transform:rotate(-15deg) scale(1.02)}37%{top:45%;left:60%;transform:rotate(-8deg)}44%{top:calc(100% - 75px);left:40%;transform:rotate(2deg)}46%{top:calc(100% - 70px);left:38%;transform:rotate(8deg) scaleX(1.04) scaleY(.94)}50%{top:calc(100% - 85px);left:30%;transform:rotate(15deg)}59%{top:50%;left:8%;transform:rotate(10deg)}62%{top:48%;left:0;transform:rotate(5deg) scaleX(.94) scaleY(1.04)}67%{top:40%;left:10%;transform:rotate(-8deg)}75%{top:8%;left:35%;transform:rotate(-12deg)}78%{top:0;left:40%;transform:rotate(-5deg) scaleX(1.04) scaleY(.94)}82%{top:12%;left:30%;transform:rotate(5deg)}91%{top:30%;left:12%;transform:rotate(8deg)}100%{top:25%;left:0;transform:rotate(3deg)}
         }
 
         /* ============================================
@@ -700,17 +707,31 @@
             transition: transform 0.4s ease-out;
         }
 
-        /* Hover — crab darts away */
-        .crab-overlay.peeking .crab-hover-zone:hover ~ .crab {
+        /* Hover — crab darts away (desktop only) */
+        .crab-overlay.peeking:not(.touch-hidden) .crab-hover-zone:hover ~ .crab {
             left: -50px;
             transition: left 0.15s ease-in;
         }
 
-        .crab-overlay.peeking .crab-hover-zone:hover ~ .crab #left-claw {
+        .crab-overlay.peeking:not(.touch-hidden) .crab-hover-zone:hover ~ .crab #left-claw {
             transform: rotate(0);
         }
 
-        .crab-overlay.peeking .crab-hover-zone:hover ~ .crab #right-claw {
+        .crab-overlay.peeking:not(.touch-hidden) .crab-hover-zone:hover ~ .crab #right-claw {
+            transform: rotate(0);
+        }
+
+        /* Touch — tapped away state */
+        .crab-overlay.peeking.touch-hidden .crab {
+            left: -50px;
+            transition: left 0.15s ease-in;
+        }
+
+        .crab-overlay.peeking.touch-hidden .crab #left-claw {
+            transform: rotate(0);
+        }
+
+        .crab-overlay.peeking.touch-hidden .crab #right-claw {
             transform: rotate(0);
         }
 
@@ -953,6 +974,7 @@
             }
 
             .bento {
+                margin-top: 40px;
                 height: auto;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto;
@@ -1046,7 +1068,7 @@
         </div>
         <div class="hero-bio">
             <p class="hero-headline">i like to make stuff</p>
-            <p class="hero-detail">Head of Product & Design at Filament. Past lives at Instagram, Spotify, and Foursquare. The rest of my time goes to illustrating, side projects, and stopping pucks.</p>
+            <p class="hero-detail">head of product & design at filament. past lives at instagram, spotify, and foursquare. outside of work i record and edit hockey highlight videos, illustrate way too many birds, and really enjoy getting lost in learning new things.</p>
         </div>
     </header>
 
@@ -1224,10 +1246,8 @@
         <div class="project-text">
             <span class="project-tag">Illustration</span>
             <h3 class="project-name">Bird Playing Cards</h3>
-            <p class="project-desc">A hand-illustrated deck of playing cards featuring original bird characters. Every face card is a different species, hand-drawn and then digitized.</p>
-            <p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <p class="project-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-            <p class="project-desc">Placeholder for the illustration process, printing journey, and the Etsy shop experience.</p>
+            <p class="project-desc">While I was learning Procreate, this king of hearts was one of my first projects. Friends and family encouraged me to keep going and draw the rest of the face cards. From there my wife was like, let's get these printed.</p>
+            <p class="project-desc">What started as an excuse to draw more birds turned into figuring out printing, packaging, and how Etsy works. Now the cards are a hit at the holidays and have even been sold in a store in my neighborhood.</p>
             <a href="https://www.etsy.com/listing/1762481211/hand-illustrated-bird-playing-cards" class="project-cta" target="_blank" rel="noopener">Etsy shop</a>
         </div>
     </section>
@@ -1279,10 +1299,6 @@
          ========================================== -->
 
     <footer class="footer">
-        <div class="footer-links">
-            <a href="https://linkedin.com/in/traceychurray">LinkedIn</a>
-            <a href="mailto:tracey@example.com">Email</a>
-        </div>
         <span class="footer-tagline">Made in Brooklyn</span>
     </footer>
 
@@ -1295,6 +1311,7 @@
 
         // Crab — one-shot scuttle across grid top on scroll
         const crabOverlay = document.querySelector('.crab-overlay');
+        let crabRanAway = false;
         if (crabOverlay) {
             const gridObs = new IntersectionObserver((entries) => {
                 entries.forEach(e => {
@@ -1304,6 +1321,7 @@
                             // After crab-cross animation ends, switch to interactive peeking
                             crabOverlay.addEventListener('animationend', (e) => {
                                 if (e.animationName !== 'crab-cross') return;
+                                crabRanAway = true;
                                 requestAnimationFrame(() => {
                                     crabOverlay.classList.add('peeking');
                                     crabOverlay.classList.remove('animating');
@@ -1313,12 +1331,57 @@
                                     });
                                 });
                             });
+
+                            // Touch devices: tap the peeking crab to hide, then it comes back
+                            if (isTouchDevice) {
+                                const hoverZone = crabOverlay.querySelector('.crab-hover-zone');
+                                hoverZone.addEventListener('touchstart', (ev) => {
+                                    ev.preventDefault();
+                                    if (!crabOverlay.classList.contains('peeking')) return;
+                                    crabOverlay.classList.add('touch-hidden');
+                                    // Slide back after a beat
+                                    setTimeout(() => {
+                                        crabOverlay.classList.remove('touch-hidden');
+                                    }, 2000);
+                                });
+                            }
                         }, 800);
                         gridObs.unobserve(e.target);
                     }
                 });
             }, { threshold: 0.2 });
             gridObs.observe(document.querySelector('.bento'));
+        }
+
+        // Puffer — starts after crab is fully off-screen
+        const pufferCell = document.querySelector('.cell-puffer');
+        if (pufferCell) {
+            // Fallback: if crab isn't present or never triggers, start on scroll
+            const pufferFallback = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting && !pufferCell.classList.contains('puffer-active')) {
+                        setTimeout(() => pufferCell.classList.add('puffer-active'), 1500);
+                        pufferFallback.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            if (crabOverlay) {
+                // Primary trigger: wait for crab animation to fully end
+                const crabMO = new MutationObserver((mutations) => {
+                    for (const m of mutations) {
+                        if (m.attributeName === 'class' && crabOverlay.classList.contains('peeking')) {
+                            pufferCell.classList.add('puffer-active');
+                            crabMO.disconnect();
+                            break;
+                        }
+                    }
+                });
+                crabMO.observe(crabOverlay, { attributes: true });
+            } else {
+                // No crab on page — start puffer on scroll
+                pufferFallback.observe(pufferCell);
+            }
         }
 
         // Projects — scroll-triggered entrance
