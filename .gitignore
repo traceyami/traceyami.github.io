@@ -1,3 +1,6 @@
 .DS_Store
 prototypes/
 archive/
+CLAUDE.md
+.claude/
+prototype-*.html
