@@ -1042,6 +1042,220 @@
                 padding: 1.5rem 1.25rem;
             }
         }
+
+        .hero-headline { font-size: clamp(1.6rem, 2.6vw, 2.1rem); line-height: 1.15; margin-bottom: 0.75rem; }
+        @media (max-width: 600px) { .hero-headline { font-size: 1.45rem; } }
+
+        /* ===== Direction A: everything on one 1200px container ===== */
+        .hero { max-width: 1320px; align-items: flex-start; justify-content: space-between; padding: 7rem 2rem 3rem; }
+        .hero-bio { flex: 0 1 540px; }
+        .grid-section { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+        .bento { height: auto; aspect-ratio: 2.9 / 1; }
+        .bento .cell { border-radius: var(--radius) !important; }
+
+        .projects-intro { max-width: 1320px; text-align: left; padding: 8rem 2rem 2.5rem; }
+        .projects-intro .projects-label {
+            font-family: var(--font-display); font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+            font-weight: 600; color: var(--color-text);
+        }
+
+        .project-grid {
+            max-width: 1320px; margin: 0 auto; padding: 0 2rem 8rem;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem 2.5rem;
+        }
+        .project-grid .project,
+        .project-grid .project--reverse { flex-direction: column; min-height: 0; }
+        .project-grid .project-hero,
+        .project-grid .project--reverse .project-hero {
+            width: 100%; aspect-ratio: 5 / 4; border-radius: var(--radius); transform: translateY(20px);
+        }
+        .project-grid .project.visible .project-hero { transform: none; }
+        .project-grid .project-text,
+        .project-grid .project--reverse .project-text {
+            padding: 1.5rem 0 0; max-width: 540px; margin-left: 0; justify-content: flex-start;
+        }
+        .project-grid .project-name { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+        @media (max-width: 1024px) {
+            .hero { align-items: flex-start; }
+            .hero-bio { flex: none; }
+            .bento { margin-top: 0; aspect-ratio: auto; }
+            .project-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+        }
+        @media (max-width: 600px) {
+            .grid-section, .projects-intro, .project-grid { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .projects-intro { padding-top: 4.5rem; padding-bottom: 1.5rem; }
+        }
+
+
+        /* ===== Direction C: the work sits on the table as the objects it is ===== */
+
+        /* Crab tile and boobies tile trade places, so the top row isn't all crab */
+        .cell-crab { grid-column: 8 / 10; grid-row: 2; }
+        .cell-boobies { grid-column: 4 / 6; grid-row: 1; }
+        @media (max-width: 1024px) {
+            .cell-crab { grid-column: 1; grid-row: 4; }
+            .cell-boobies { grid-column: 1; grid-row: 2; }
+        }
+
+        /* Crab lives behind the tiles. It climbs up from behind the Brooklyn tile, creeps right,
+           spots the boobies and panics, dashes across them to duck behind the left edge of Prospect Park,
+           then pops back up to peek. The overlay clips at the tiles' top edge, so "behind a tile" is just below it. */
+        .crab-overlay { height: 90px; overflow: hidden; }
+        /* Squash and tilt from the feet, so landings and dives pivot on the ground line */
+        .crab-overlay .crab { left: 6%; transform: translateY(110%); transform-origin: 50% 100%; }
+
+        @keyframes crab-cross {
+            /* Hidden behind Brooklyn */
+            0%    { left: 6%;  transform: scaleY(1) translateY(110%) rotate(0deg); animation-timing-function: ease-out; }
+            /* Eyes come up, tilted, looking around */
+            5%    { left: 6%;  transform: scaleY(1) translateY(58%) rotate(-3deg); animation-timing-function: ease-in-out; }
+            8%    { left: 6%;  transform: scaleY(1) translateY(55%) rotate(2deg); animation-timing-function: ease-in; }
+            /* Scrambles up and over the edge */
+            10.5% { left: 6%;  transform: scaleY(1.02) translateY(-4px) rotate(-1.5deg); animation-timing-function: ease-in; }
+            12%   { left: 6.4%; transform: scaleY(0.94) translateY(0) rotate(0deg); animation-timing-function: ease-out; }
+            13.5% { left: 6.8%; transform: scaleY(1) translateY(0) rotate(0deg); }
+            /* Slow creep right */
+            20%   { left: 19%; transform: scaleY(1) translateY(0) rotate(0deg); }
+            /* Pause, sees the boobies */
+            30%   { left: 19%; transform: scaleY(1) translateY(0) rotate(0deg); }
+            32%   { left: 19%; transform: scaleY(0.85) translateY(0) rotate(0deg); }
+            /* Startled hop */
+            34%   { left: 18%; transform: scaleY(1.08) translateY(-22px) rotate(0deg); }
+            36%   { left: 18%; transform: scaleY(0.86) translateY(0) rotate(0deg); }
+            38%   { left: 18%; transform: scaleY(1) translateY(0) rotate(0deg); animation-timing-function: ease-in-out; }
+            /* Panics and dashes right, across the boobies, braking at the edge */
+            46.5% { left: 42.6%; transform: scaleY(1) translateY(0) rotate(0deg); animation-timing-function: ease-out; }
+            /* Crouches to jump */
+            48%   { left: 43%; transform: scaleY(0.92) translateY(0) rotate(-1deg); animation-timing-function: ease-out; }
+            /* Hops up and tips forward */
+            49.5% { left: 43.5%; transform: scaleY(1.02) translateY(-5px) rotate(4deg); animation-timing-function: ease-in; }
+            /* Dives behind the left edge of Prospect Park */
+            53%   { left: 44%; transform: scaleY(1) translateY(118%) rotate(12deg); }
+            /* Hidden; straighten up out of sight */
+            60%   { left: 44%; transform: scaleY(1) translateY(118%) rotate(0deg); animation-timing-function: ease-out; }
+            76%   { left: 44%; transform: scaleY(1) translateY(118%) rotate(0deg); animation-timing-function: ease-out; }
+            /* Pops back up, overshoots, wobbles into a peek */
+            80%   { left: 44%; transform: scaleY(1.02) translateY(42%) rotate(-2deg); animation-timing-function: ease-in-out; }
+            84%   { left: 44%; transform: scaleY(0.99) translateY(54%) rotate(1deg); animation-timing-function: ease-in-out; }
+            88%   { left: 44%; transform: scaleY(1) translateY(52%) rotate(0deg); }
+            100%  { left: 44%; transform: scaleY(1) translateY(52%) rotate(0deg); }
+        }
+
+        .crab-hover-zone { left: calc(44% - 10px); top: auto; bottom: 0; height: 40px; }
+        .crab-overlay.peeking .crab { left: 44%; transform: translateY(52%); }
+        .crab-overlay.peeking.interactive .crab { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+        .crab-overlay.peeking:not(.touch-hidden) .crab-hover-zone:hover ~ .crab,
+        .crab-overlay.peeking.touch-hidden .crab {
+            left: 44%;
+            transform: translateY(118%);
+            transition: transform 0.15s ease-in;
+        }
+
+        :root {
+            --shadow-sticker: drop-shadow(0 1px 1px rgba(74, 52, 30, 0.2)) drop-shadow(0 8px 10px rgba(74, 52, 30, 0.18));
+            --shadow-cutout: drop-shadow(0 2px 3px rgba(74, 52, 30, 0.18)) drop-shadow(0 16px 18px rgba(74, 52, 30, 0.22));
+            --shadow-screen: 0 22px 40px -18px rgba(74, 52, 30, 0.45), 0 2px 6px rgba(74, 52, 30, 0.12);
+        }
+
+        .project-grid .stage,
+        .project-grid .project--reverse .stage {
+            aspect-ratio: auto;
+            height: clamp(280px, 27vw, 380px);
+            border-radius: 0;
+            overflow: visible;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Cards: a hand of five, fanned from the bottom; spreads when you reach for it */
+        .fan { position: relative; width: 100%; height: 100%; }
+        .fan img {
+            position: absolute;
+            left: 50%;
+            bottom: 6%;
+            width: auto;
+            height: 72%;
+            aspect-ratio: 601 / 878;
+            translate: -50% 0;
+            border-radius: 5% / 3.4%;
+            background: #fff;
+            box-shadow: 2px 4px 10px rgba(74, 52, 30, 0.22);
+            transform-origin: 50% 230%;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fan img:nth-child(1) { transform: rotate(-14deg); }
+        .fan img:nth-child(2) { transform: rotate(-7deg); }
+        .fan img:nth-child(3) { transform: rotate(0deg); }
+        .fan img:nth-child(4) { transform: rotate(7deg); }
+        .fan img:nth-child(5) { transform: rotate(14deg); }
+        .stage-cards:hover .fan img:nth-child(1) { transform: rotate(-19deg); }
+        .stage-cards:hover .fan img:nth-child(2) { transform: rotate(-9.5deg); }
+        .stage-cards:hover .fan img:nth-child(3) { transform: rotate(0deg) translateY(-5%); }
+        .stage-cards:hover .fan img:nth-child(4) { transform: rotate(9.5deg); }
+        .stage-cards:hover .fan img:nth-child(5) { transform: rotate(19deg); }
+
+        /* Screens stand upright; only physical things get tossed at an angle */
+        .screen {
+            max-width: 88%;
+            max-height: 92%;
+            width: auto;
+            height: auto;
+            filter: var(--shadow-cutout);
+        }
+
+        /* Phone rises out of the bottom of its stage; the fade lives on the wrapper so the shadow survives */
+        .stage-phone { overflow: hidden; align-items: flex-start; }
+        .phone-wrap {
+            height: 100%;
+            padding: 3% 28px 0;
+            -webkit-mask-image: linear-gradient(to bottom, #000 66%, transparent 97%);
+                    mask-image: linear-gradient(to bottom, #000 66%, transparent 97%);
+        }
+        .phone {
+            display: block;
+            height: 118%;
+            width: auto;
+            border: 6px solid #1f1d1b;
+            border-radius: 30px;
+            box-shadow: var(--shadow-screen);
+        }
+
+        .sticker {
+            width: 74%;
+            height: auto;
+            filter: var(--shadow-sticker);
+            transform: rotate(-5deg);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .stage-sticker:hover .sticker { transform: rotate(-1deg) translateY(-4px) scale(1.02); }
+
+        .project-grid .project-text { padding-top: 1.75rem; }
+
+        @media (max-width: 600px) {
+            .project-grid .stage { height: 260px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fan img, .sticker { transition: none; }
+        }
+
+
+        /* Puffer is driven by script now: steering, tilt, fins, bob and puff all come from one loop */
+        .puffer-bounce .puffer {
+            animation: none;
+            left: 0;
+            top: 0;
+            transform: translate3d(-200px, 0, 0);
+            will-change: transform;
+        }
+        .puffer-bounce #right-fin,
+        .puffer-bounce #left-fin { animation: none; }
+        .cell-puffer { cursor: pointer; }
+
     </style>
 </head>
 <body>
@@ -1236,16 +1450,22 @@
          ========================================== -->
 
     <div class="projects-intro">
-        <p class="projects-label">Stuff I've made</p>
+        <h2 class="projects-label">Out in the world</h2>
     </div>
 
+    <div class="project-grid">
     <!-- Project 1: Bird Playing Cards — image left, text right -->
     <section class="project" id="playing-cards">
-        <div class="project-hero hero-cards">
-            <img src="images/etsy4.jpg" alt="Hand-illustrated bird playing cards" style="width:100%; height:100%; object-fit:cover;">
+        <div class="project-hero stage stage-cards">
+            <div class="fan" aria-label="Five illustrated bird face cards">
+                <img src="images/joker-bike.png" alt="">
+                <img src="images/queen-diamonds.png" alt="">
+                <img src="images/jack-hearts.png" alt="">
+                <img src="images/king-clubs.png" alt="">
+                <img src="images/queen-of-spades.png" alt="">
+            </div>
         </div>
         <div class="project-text">
-            <span class="project-tag">Illustration</span>
             <h3 class="project-name">Bird Playing Cards</h3>
             <p class="project-desc">While I was learning Procreate, this king of hearts was one of my first projects. Friends and family encouraged me to keep going and draw the rest of the face cards. From there my wife was like, let's get these printed.</p>
             <p class="project-desc">What started as an excuse to draw more birds turned into figuring out printing, packaging, and how Etsy works. Now the cards are a hit at the holidays and have even been sold in a store in my neighborhood.</p>
@@ -1253,40 +1473,24 @@
         </div>
     </section>
 
-    <!-- Divider -->
-    <div class="project-divider">
-        <svg viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 Q10 2, 20 10 Q30 18, 38 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-        </svg>
-    </div>
-
     <!-- Project 2: Bird in the Hand — image right, text left -->
     <section class="project project--reverse" id="bith">
-        <div class="project-hero hero-bith">
-            <img src="images/birb-in-the-hand-hero.png" alt="Bird in the Hand card game" style="width:100%; height:100%; object-fit:cover;">
+        <div class="project-hero stage stage-screen">
+            <img class="screen" src="images/birb-in-the-hand-cutout.png" alt="Bird in the Hand game table mid-hand">
         </div>
         <div class="project-text">
-            <span class="project-tag">Side project</span>
             <h3 class="project-name">Bird in the Hand</h3>
             <p class="project-desc">A blackjack-meets-bingo game built on my bird playing cards. It started as a weekend project to learn Claude Code. Straight blackjack with no money on the line turned out to be kind of boring, so I borrowed a little from Balatro and layered a second game on top.</p>
             <a href="https://bird-in-the-hand.vercel.app" class="project-cta" target="_blank" rel="noopener">Play it</a>
         </div>
     </section>
 
-    <!-- Divider -->
-    <div class="project-divider">
-        <svg viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 Q10 2, 20 10 Q30 18, 38 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-        </svg>
-    </div>
-
     <!-- Project 3: Nosy Neighbor — image left, text right -->
     <section class="project" id="nosy">
-        <div class="project-hero hero-nosy">
-            <img src="images/nosy-neighbor-hero.png" alt="Nosy Neighbor app screenshot" style="width:100%; height:100%; object-fit:cover;">
+        <div class="project-hero stage stage-phone">
+            <div class="phone-wrap"><img class="phone" src="images/nosy-phone.png" alt="Nosy Neighbor feed on a phone"></div>
         </div>
         <div class="project-text">
-            <span class="project-tag">Side project</span>
             <h3 class="project-name">Nosy Neighbor</h3>
             <p class="project-desc">A daily feed of what's actually happening on my block. A construction fence that appeared overnight, a restaurant that closed, a film crew blocking the sidewalk. The info is all in the city's open data, but it's scattered across a dozen agency websites.</p>
             <p class="project-desc">It pulls from nine NYC data sources and ten local news feeds, then uses Claude to turn bureaucratic city records into headlines a person would actually read.</p>
@@ -1294,25 +1498,18 @@
         </div>
     </section>
 
-    <!-- Divider -->
-    <div class="project-divider">
-        <svg viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 10 Q10 2, 20 10 Q30 18, 38 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-        </svg>
-    </div>
-
     <!-- Project 4: Liberty Merch — image right, text left -->
     <section class="project project--reverse" id="liberty">
-        <div class="project-hero hero-liberty">
-            <img src="images/stew-york.jpg" alt="Welcome to Stew York sticker design" style="width:100%; height:100%; object-fit:cover;">
+        <div class="project-hero stage stage-sticker">
+            <img class="sticker" src="images/stew-york-sticker.png" alt="Welcome to Stew York sticker">
         </div>
         <div class="project-text">
-            <span class="project-tag">Illustration</span>
             <h3 class="project-name">Liberty Merch</h3>
             <p class="project-desc">I'm a Liberty season ticket holder, so of course the bird shop sells Liberty stuff too. Shirts and stickers, drawn when a moment hits and printed on demand, so I can go from idea to listing in a day or two. Stew York is the one that's stuck around. The rest come and go with the roster.</p>
             <a href="https://www.etsy.com/listing/1814468609/welcome-to-stew-york-breanna-stewart" class="project-cta" target="_blank" rel="noopener">Shop</a>
         </div>
     </section>
+    </div>
 
     <!-- ==========================================
          FOOTER
@@ -1414,6 +1611,155 @@
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
         projects.forEach(p => revealObs.observe(p));
+
+        // Puffer — steered swimming. Wanders toward random spots, eases off on arrival,
+        // turns away from the glass, leans into its direction, paddles harder when it's moving,
+        // and puffs up when you hover near it or tap the tank.
+        (function () {
+            const cell = document.querySelector('.cell-puffer');
+            const fish = cell && cell.querySelector('.puffer');
+            if (!fish) return;
+            const finR = fish.querySelector('#right-fin');
+            const finL = fish.querySelector('#left-fin');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const FISH_W = 60, FISH_H = 68;
+            const MAX_SPEED = 46;          // px/s
+            const MAX_FORCE = 38;          // px/s^2
+            const SLOW_RADIUS = 70;
+            const WALL = 26;
+
+            let W = 0, H = 0;
+            const measure = () => { const r = cell.getBoundingClientRect(); W = r.width; H = r.height; };
+            measure();
+            new ResizeObserver(measure).observe(cell);
+
+            const rand = (a, b) => a + Math.random() * (b - a);
+            const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+            const lerp = (a, b, t) => a + (b - a) * t;
+
+            // Enters from below the tank, like before
+            const pos = { x: W * 0.12, y: H + 30 };
+            const vel = { x: 6, y: -40 };
+            let target = null, idleUntil = 0, tilt = 0, finPhase = 0, t = 0;
+            const bobPhase = rand(0, 10);
+
+            const pickTarget = () => {
+                // Prefer somewhere a decent distance away so it actually travels
+                for (let i = 0; i < 8; i++) {
+                    const p = { x: rand(WALL, W - FISH_W - WALL), y: rand(WALL * 0.6, H - FISH_H - WALL * 0.6) };
+                    if (Math.hypot(p.x - pos.x, p.y - pos.y) > Math.min(W, H) * 0.45) return p;
+                }
+                return { x: rand(WALL, W - FISH_W - WALL), y: rand(WALL, H - FISH_H - WALL) };
+            };
+
+            // Puff: quick inflate with a shiver, hold, slow deflate
+            let puffStart = -1;
+            const PUFF_IN = 0.22, PUFF_HOLD = 1.6, PUFF_OUT = 1.3, PUFF_MAX = 1.45;
+            const puff = () => { if (puffStart < 0) puffStart = t; };
+            const puffState = () => {
+                if (puffStart < 0) return { scale: 1, shiver: 0, drag: 1 };
+                const p = t - puffStart;
+                if (p < PUFF_IN) {
+                    const k = p / PUFF_IN, back = 1 + 2.2 * Math.pow(k - 1, 3) + 1.2 * Math.pow(k - 1, 2);
+                    return { scale: 1 + (PUFF_MAX - 1) * back, shiver: 1, drag: 0.3 };
+                }
+                if (p < PUFF_IN + PUFF_HOLD) {
+                    const k = (p - PUFF_IN) / PUFF_HOLD;
+                    return { scale: PUFF_MAX, shiver: Math.max(0, 1 - k * 3), drag: 0.25 };
+                }
+                if (p < PUFF_IN + PUFF_HOLD + PUFF_OUT) {
+                    const k = (p - PUFF_IN - PUFF_HOLD) / PUFF_OUT, e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+                    return { scale: lerp(PUFF_MAX, 1, e), shiver: 0, drag: lerp(0.25, 1, e) };
+                }
+                if (p > PUFF_IN + PUFF_HOLD + PUFF_OUT + 0.6) puffStart = -1;   // short cooldown
+                return { scale: 1, shiver: 0, drag: 1 };
+            };
+
+            cell.addEventListener('click', puff);
+            cell.addEventListener('pointermove', (e) => {
+                if (e.pointerType !== 'mouse') return;
+                const r = cell.getBoundingClientRect();
+                const dx = e.clientX - r.left - (pos.x + FISH_W / 2), dy = e.clientY - r.top - (pos.y + FISH_H / 2);
+                if (Math.hypot(dx, dy) < 48) puff();
+            });
+
+            function step(dt) {
+                const ps = puffState();
+
+                if (!reduceMotion) {
+                    const now = t;
+                    if (!target || (now > idleUntil && Math.hypot(target.x - pos.x, target.y - pos.y) < 14)) {
+                        // Sometimes hang around for a beat before heading off again
+                        if (target && Math.random() < 0.35) idleUntil = now + rand(0.8, 2.2);
+                        target = pickTarget();
+                    }
+                    const idling = now < idleUntil;
+                    const dx = target.x - pos.x, dy = target.y - pos.y, dist = Math.hypot(dx, dy) || 1;
+                    const speed = (idling ? 6 : MAX_SPEED * clamp(dist / SLOW_RADIUS, 0.18, 1)) * ps.drag;
+                    let sx = dx / dist * speed - vel.x, sy = dy / dist * speed - vel.y;
+
+                    // Turn away from the glass before touching it
+                    if (pos.x < WALL) sx += (WALL - pos.x) * 2.2;
+                    if (pos.x > W - FISH_W - WALL) sx -= (pos.x - (W - FISH_W - WALL)) * 2.2;
+                    if (pos.y < WALL * 0.5) sy += (WALL * 0.5 - pos.y) * 2.2;
+                    if (pos.y > H - FISH_H - WALL * 0.5 && pos.y < H) sy -= (pos.y - (H - FISH_H - WALL * 0.5)) * 2.2;
+
+                    const sMag = Math.hypot(sx, sy), limit = MAX_FORCE * dt;
+                    if (sMag > limit) { sx = sx / sMag * limit; sy = sy / sMag * limit; }
+                    vel.x += sx; vel.y += sy;
+                    pos.x += vel.x * dt; pos.y += vel.y * dt;
+                } else if (pos.y > H) {
+                    pos.x = W / 2 - FISH_W / 2; pos.y = H / 2 - FISH_H / 2; vel.x = vel.y = 0;
+                }
+
+                const spd = Math.hypot(vel.x, vel.y), effort = clamp(spd / MAX_SPEED, 0, 1);
+                tilt = lerp(tilt, clamp(vel.x / MAX_SPEED * 11 + vel.y / MAX_SPEED * 3, -12, 12), Math.min(1, dt * 2.5));
+
+                // Two slow, out-of-step sines so the bob never settles into an obvious beat
+                const bob = reduceMotion ? 0 : Math.sin((t + bobPhase) * 1.45) * 3 + Math.sin((t + bobPhase) * 2.9 + 1.3) * 1.2;
+                const shiver = ps.shiver * Math.sin(t * 55) * 2.2 * (reduceMotion ? 0 : 1);
+
+                finPhase += dt * (reduceMotion ? 0 : 3 + effort * 7 + (ps.drag < 1 ? 6 : 0));
+                const finAmp = reduceMotion ? 0 : 5 + effort * 11;
+                const fin = Math.sin(finPhase) * finAmp;
+                finR.style.transform = 'rotate(' + (-fin).toFixed(2) + 'deg)';
+                finL.style.transform = 'rotate(' + fin.toFixed(2) + 'deg)';
+
+                fish.style.transform = 'translate3d(' + pos.x.toFixed(1) + 'px,' + (pos.y + bob).toFixed(1) + 'px,0) rotate(' +
+                    (tilt + shiver).toFixed(2) + 'deg) scale(' + ps.scale.toFixed(3) + ')';
+            }
+
+            // Only run while the tank is on screen and the tab is visible
+            let running = false, visible = false, last = 0, rafId = 0;
+            const frame = (ts) => {
+                const dt = Math.min(0.05, (ts - last) / 1000 || 0.016);
+                last = ts; t += dt;
+                step(dt);
+                rafId = requestAnimationFrame(frame);
+            };
+            const sync = () => {
+                const should = visible && !document.hidden && cell.classList.contains('puffer-active');
+                if (should && !running) { running = true; last = performance.now(); rafId = requestAnimationFrame(frame); }
+                if (!should && running) { running = false; cancelAnimationFrame(rafId); }
+            };
+            new IntersectionObserver((es) => { visible = es[0].isIntersecting; sync(); }).observe(cell);
+            document.addEventListener('visibilitychange', sync);
+            new MutationObserver(sync).observe(cell, { attributes: true, attributeFilter: ['class'] });
+
+            // Bubbles: each rise gets a new size, column and speed
+            cell.querySelectorAll('.bubble').forEach((b) => {
+                const reroll = () => {
+                    const size = rand(3, 9).toFixed(1) + 'px';
+                    b.style.width = b.style.height = size;
+                    b.style.left = rand(8, 92).toFixed(1) + '%';
+                    b.style.animationDuration = rand(5.5, 10.5).toFixed(2) + 's';
+                };
+                reroll();
+                b.style.animationDelay = rand(0, 5).toFixed(2) + 's';
+                b.addEventListener('animationiteration', reroll);
+            });
+        })();
     </script>
 </body>
 </html>
