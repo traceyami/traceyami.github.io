@@ -790,6 +790,7 @@
         .hero-bith { background: linear-gradient(135deg, #a8d5ba 0%, #87CEEB 100%); }
         .hero-nosy { background: linear-gradient(135deg, #f0c27f 0%, #fc5c7d 60%); }
         .hero-cards { background: var(--color-accent); }
+        .hero-liberty { background: #c8c9c8; }
         .hero-cards .preview-icon { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); }
         .hero-cards .preview-note { color: rgba(255,255,255,0.3); }
 
@@ -1068,7 +1069,7 @@
         </div>
         <div class="hero-bio">
             <p class="hero-headline">i like to make stuff</p>
-            <p class="hero-detail">head of product & design at filament. past lives at instagram, spotify, and foursquare. outside of work i record and edit hockey highlight videos, illustrate way too many birds, and really enjoy getting lost in learning new things.</p>
+            <p class="hero-detail">product at the browser company. past lives at instagram, spotify, foursquare, and filament. outside of work i record and edit hockey highlight videos, illustrate way too many birds, and really enjoy getting lost in learning new things.</p>
         </div>
     </header>
 
@@ -1235,7 +1236,7 @@
          ========================================== -->
 
     <div class="projects-intro">
-        <p class="projects-label">Things I've built lately</p>
+        <p class="projects-label">Stuff I've made</p>
     </div>
 
     <!-- Project 1: Bird Playing Cards — image left, text right -->
@@ -1267,8 +1268,7 @@
         <div class="project-text">
             <span class="project-tag">Side project</span>
             <h3 class="project-name">Bird in the Hand</h3>
-            <p class="project-desc">This was my first project built with Claude Code. I wanted to learn the tools, so I took the bird playing cards I'd already illustrated and set out to make a game over a weekend. The first version was straightforward blackjack, but it turns out blackjack with no money on the line is kind of boring.</p>
-            <p class="project-desc">So I brainstormed with Claude, inspired by Balatro, about how to layer another game on top. What we landed on: the face cards are birds, and they land on a 3x3 bingo board as you play. Don't bust, and you capture them. Complete a line of three, and you win the run. Joker wild cards, escalating bets, and just enough pressure to make you do something stupid on hand twelve.</p>
+            <p class="project-desc">A blackjack-meets-bingo game built on my bird playing cards. It started as a weekend project to learn Claude Code. Straight blackjack with no money on the line turned out to be kind of boring, so I borrowed a little from Balatro and layered a second game on top.</p>
             <a href="https://bird-in-the-hand.vercel.app" class="project-cta" target="_blank" rel="noopener">Play it</a>
         </div>
     </section>
@@ -1288,9 +1288,29 @@
         <div class="project-text">
             <span class="project-tag">Side project</span>
             <h3 class="project-name">Nosy Neighbor</h3>
-            <p class="project-desc">I kept wondering what was actually happening on my block. A construction fence that appeared overnight, a restaurant that closed, a film crew blocking the sidewalk. The info exists in the city's open data, but it's scattered across a dozen agency websites.</p>
-            <p class="project-desc">So I built a daily neighborhood feed that pulls from nine NYC data sources and ten local news feeds, then uses Claude to rewrite bureaucratic city data into readable headlines. It stores everything in Google Sheets, which sounds unhinged but is honestly perfect for a one-person app. Built entirely with Claude Code.</p>
+            <p class="project-desc">A daily feed of what's actually happening on my block. A construction fence that appeared overnight, a restaurant that closed, a film crew blocking the sidewalk. The info is all in the city's open data, but it's scattered across a dozen agency websites.</p>
+            <p class="project-desc">It pulls from nine NYC data sources and ten local news feeds, then uses Claude to turn bureaucratic city records into headlines a person would actually read.</p>
             <a href="https://nosy-neighbor.vercel.app" class="project-cta" target="_blank" rel="noopener">Check it out</a>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="project-divider">
+        <svg viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10 Q10 2, 20 10 Q30 18, 38 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+    </div>
+
+    <!-- Project 4: Liberty Merch — image right, text left -->
+    <section class="project project--reverse" id="liberty">
+        <div class="project-hero hero-liberty">
+            <img src="images/stew-york.jpg" alt="Welcome to Stew York sticker design" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="project-text">
+            <span class="project-tag">Illustration</span>
+            <h3 class="project-name">Liberty Merch</h3>
+            <p class="project-desc">I'm a Liberty season ticket holder, so of course the bird shop sells Liberty stuff too. Shirts and stickers, drawn when a moment hits and printed on demand, so I can go from idea to listing in a day or two. Stew York is the one that's stuck around. The rest come and go with the roster.</p>
+            <a href="https://www.etsy.com/listing/1814468609/welcome-to-stew-york-breanna-stewart" class="project-cta" target="_blank" rel="noopener">Shop</a>
         </div>
     </section>
 
